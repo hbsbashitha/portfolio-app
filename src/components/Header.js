@@ -68,12 +68,13 @@ const Header = () => {
 
             {/* Add social media links based on the `socials` data */}
             
-            {/* {socials.map((i) => {
-              <FontAwesomeIcon icon={i.icon} size="2x" />
-            })} */}
+            {socials.map((i) => (
+              
+            <a href={i.url}  style={{margin:"15px"}}><FontAwesomeIcon icon={i.icon}  size="2x" /> </a>
+               
+            ))}
 <a>Projects</a>
 <a>Contact Me</a>
-<FontAwesomeIcon icon={faGithub} />
 
 
           </nav>
