@@ -22,18 +22,27 @@ const LandingSection = () => {
   const { onOpen } = useAlertContext();
 
   const formik = useFormik({
-    initialValues: {firstName:"",email:"",type:"",comment:""},
+    initialValues: {firstName:"",email:"",type:"hireMe",comment:""},
     onSubmit: (values) => {
-      submit(values);
+      submit('https://john.com/contactme', values); 
      
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
       email: Yup.string().email('Invalid email address').required('Required'),
-      type: Yup.string().required('Required'),
-      comment: Yup.string().required('Required')
+     
+      comment: Yup.string().required('Required').min(10,'Must be at least 10 characters'),
     }),
   });
+
+  useEffect(() => {
+    if (response) {
+      onOpen(response.type, response.message);
+      if(response.type === 'success') {
+        formik.resetForm();
+      }
+    }
+  }, [response]);
 
   return (
     <FullScreenSection
@@ -66,8 +75,7 @@ const LandingSection = () => {
                   type="email"
                   {...formik.getFieldProps("email")} 
                 />
-                {formik.errors.email ? <FormErrorMessage>{formik.errors.email}</FormErrorMessage>:null}
-                <FormErrorMessage>ssh</FormErrorMessage>
+                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
 
                 
               </FormControl>
