@@ -14,7 +14,7 @@ function App() {
         <main>
           <Header />
           <LandingSection />
-          <ProjectsSection />
+//           <ProjectsSection />
           <ContactMeSection />
           <Footer />
           <Alert />
